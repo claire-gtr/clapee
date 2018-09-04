@@ -1,0 +1,6 @@
+<%= @event.title %>
+<%= @event.description %>
+
+<%= link_to "Retour à la liste des concerts", root_path %>
+<%= link_to "Modifier", edit_event_path(@event) %>
+<%= link_to "Supprimer", event_path(@event), method: :delete, data: { confirm: "Confirmer la suppression de ce concert ? Vous ne pourrez pas revenir en arrière. " } %>
