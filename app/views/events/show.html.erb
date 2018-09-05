@@ -1,6 +1,30 @@
 <%= @event.title %>
+<br>
 <%= @event.description %>
+<br>
+<% @event.reviews.each do |review| %>
+  <%= review.user.email %> <br>
+  <%= review.content %> <br>
+  <%= review.stars %> <br>
+  <%if current_user == review.user %>
+    <%= link_to "Modifier mon commentaire", edit_event_review_path(@event, review) %>
+    <br>
+    <%= link_to "Supprimer mon commentaire", event_review_path(@event, review), method: :delete, data: { confirm: "Supprimer mon commentaire ?" } %>
+    <% end %> <br>
+<% end %>
+
+<%if user_signed_in? %>
+  Laisser un commentaire :
+  <%= simple_form_for([@event, @review]) do |f| %>
+    <%= f.input :content, method: :create, label: false, placeholder: "Votre commentaire..."%>
+    <%= f.input :stars, method: :create, label: false, placeholder: "Indiquer nb d'étoiles sur 5"%>
+    <%= f.button :submit, "Publier", class: "btn btn-primary" %>
+  <% end %>
+
+<% end %>
 
 <%= link_to "Retour à la liste des concerts", root_path %>
+<br>
 <%= link_to "Modifier", edit_event_path(@event) %>
+<br>
 <%= link_to "Supprimer", event_path(@event), method: :delete, data: { confirm: "Confirmer la suppression de ce concert ? Vous ne pourrez pas revenir en arrière. " } %>
