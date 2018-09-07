@@ -1,5 +1,5 @@
 
-    <%= review.user.email %> à écrit : <br>
+
     <%= review.content %>
 
       <% review.stars.to_i.times do %>
@@ -13,9 +13,9 @@
   <br>
 
     <%if current_user == review.user %>
-      <%= link_to "Modifier mon commentaire", edit_event_review_path(event, review) %>
+      <%= link_to "Modifier mon commentaire", edit_event_review_path(@event, review) %>
       <br>
-      <%= link_to "Supprimer mon commentaire", event_review_path(event, review), method: :delete, data: { confirm: "Supprimer mon commentaire ?" } %>
+      <%= link_to "Supprimer mon commentaire", event_review_path(@event, review), method: :delete, data: { confirm: "Supprimer mon commentaire ?" } %>
     <% end %> <br>
 
 

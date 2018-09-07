@@ -1,17 +1,4 @@
 
-// var reviews = document.getElementById("review-js");
-
-// <% if @review.errors.any? %>
-
-// reviews.innerHTML = ('<%= j render "reviews/review", review: review%>');
-
-// <% else %>
-// reviews.innerHTML = ('<%= j render "reviews/review", review: Review.new %>');
-// reviews.insertAdjacentHTML("beforeend", '<%= j render "reviews/review", review: review %>');
-// document.getElementById('new_review').reset();
-
-// <% end %>
-
 function refreshForm(innerHTML) {
   const newReviewForm = document.getElementById('new_review');
   newReviewForm.innerHTML = innerHTML;
@@ -29,4 +16,6 @@ function addReview(reviewHTML) {
   refreshForm('<%= j render "reviews/form", event: @event, review: Review.new %>');
 <% end %>
 
+
 document.getElementById('new_review').reset();
+
