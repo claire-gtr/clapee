@@ -1,18 +1,20 @@
 class ReviewsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  def new
-    @event = Event.find(params[:event_id])
-    @review = Review.new
-  end
 
   def create
     @event = Event.find(params[:event_id])
     @review = @event.reviews.new(review_params)
     @review.user = current_user
     if @review.save
-      redirect_to event_path(@event)
+       respond_to do |format|
+        format.html { redirect_to event_path(@event) }
+        format.js {}
+      end
     else
-      render 'events/show'
+      respond_to do |format|
+        format.html { render 'events/show' }
+        format.js
+      end
     end
   end
 

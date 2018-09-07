@@ -2,26 +2,49 @@
 <br>
 <%= @event.description %>
 <br>
-<% @event.reviews.each do |review| %>
-  <%= review.user.email %> <br>
-  <%= review.content %> <br>
-  <%= review.stars %> <br>
-  <%if current_user == review.user %>
-    <%= link_to "Modifier mon commentaire", edit_event_review_path(@event, review) %>
-    <br>
-    <%= link_to "Supprimer mon commentaire", event_review_path(@event, review), method: :delete, data: { confirm: "Supprimer mon commentaire ?" } %>
-    <% end %> <br>
-<% end %>
-
-<%if user_signed_in? %>
-  Laisser un commentaire :
-  <%= simple_form_for([@event, @review]) do |f| %>
-    <%= f.input :content, method: :create, label: false, placeholder: "Votre commentaire..."%>
-    <%= f.input :stars, method: :create, label: false, placeholder: "Indiquer nb d'étoiles sur 5"%>
-    <%= f.button :submit, "Publier", class: "btn btn-primary" %>
+<% @star_total = 0 %>
+<% if @event.reviews.count > 0 %>
+  <% @event.reviews.each do |review| %>
+    <% @star_total += review.stars.to_i %>
   <% end %>
-
+  <% @star_average = @star_total.div(@event.reviews.count).round%>
 <% end %>
+
+<br>
+
+Moyenne des notes données :
+<% if @event.reviews.count == 0 %>
+  Donnez votre avis en premier !
+<% else %>
+  <% @star_average.times do %>
+    <i class="fas fa-star"></i>
+  <% end %>
+  <% (5 - @star_average).times do %>
+    <i class="far fa-star"></i>
+  <% end %>
+<% end %>
+
+<br><br>
+
+<div id="reviews">
+  <% if @event.reviews.count == 0 %>
+    Soyez le premier !
+  <% else %>
+    <% @event.reviews.each do |review| %>
+      <%= render "reviews/review", event: @event, review: review %>
+    <%end%>
+  <%end%>
+</div>
+
+
+<div id="new_review">
+  <%if user_signed_in? %>
+    Laisser un commentaire :
+    <%= render "reviews/form", event: @event, review: @review %>
+  <% end %>
+</div>
+
+
 
 <%= link_to "Retour à la liste des concerts", root_path %>
 <br>
