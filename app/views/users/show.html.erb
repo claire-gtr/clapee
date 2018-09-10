@@ -1,0 +1,19 @@
+
+<h1> Mon profil </h1>
+
+<br>
+
+Mes concerts notés 5 étoiles : <br>
+
+<% @user.reviews.where(stars: "5").each do |review| %>
+  <%= review.event.title %> <br>
+  <p> Le <%= review.created_at %> vous avez écrit l'avis suivant :</p>
+  <%= review.content %> <br>
+  <%= link_to "Voir le concert", event_path(review.event) %> <br>
+<% end %>
+
+<br>
+
+<%= link_to "Modifier mon profil", edit_user_registration_path %>
+
+
