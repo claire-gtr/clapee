@@ -3,6 +3,8 @@ ruby '2.4.3'
 
 gem 'bootsnap', require: false
 gem 'devise'
+gem 'figaro'
+gem 'omniauth-facebook'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'puma'
