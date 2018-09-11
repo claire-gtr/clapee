@@ -30,24 +30,27 @@ Moyenne des notes données :
   <% if @event.reviews.count == 0 %>
     Soyez le premier !
   <% else %>
-    <% @event.reviews.each do |review| %>
+    <% @event.reviews.order("created_at ASC").each do |review| %>
       <%= render "reviews/review", event: @event, review: review %>
     <%end%>
   <%end%>
 </div>
 
 
-<div id="new_review">
-  <%if user_signed_in? %>
+
+<%if user_signed_in? %>
     Laisser un commentaire :
     <%= render "reviews/form", event: @event, review: @review %>
-  <% end %>
-</div>
-
-
+<% end %>
 
 <%= link_to "Retour à la liste des concerts", root_path %>
 <br>
-<%= link_to "Modifier", edit_event_path(@event) %>
-<br>
-<%= link_to "Supprimer", event_path(@event), method: :delete, data: { confirm: "Confirmer la suppression de ce concert ? Vous ne pourrez pas revenir en arrière. " } %>
+
+
+<%if policy(@event).edit? %>
+  <%= link_to "Modifier", edit_event_path(@event) %>
+<% end %>
+
+<%if policy(@event).destroy? %>
+  <%= link_to "Supprimer", event_path(@event), method: :delete, data: { confirm: "Confirmer la suppression de ce concert ? Vous ne pourrez pas revenir en arrière. " } %>
+<% end %>
