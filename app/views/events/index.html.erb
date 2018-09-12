@@ -1,7 +1,7 @@
 <% @events.each do |event| %>
   <%= event.title %>
   <br>
-  <%= event.location_name %>
+  <%= event.location.name %>
   <br>
   <%= link_to "Voir", event_path(event) %>
   <br><br>

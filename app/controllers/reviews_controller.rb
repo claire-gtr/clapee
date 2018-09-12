@@ -1,6 +1,4 @@
 class ReviewsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
-
   def create
     @event = Event.find(params[:event_id])
     @review = @event.reviews.new(review_params)
