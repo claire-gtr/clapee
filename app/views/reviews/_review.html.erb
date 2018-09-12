@@ -12,11 +12,14 @@
 
   <br>
 
-    <%if current_user == review.user %>
+    <%if (current_user == review.user) %>
       <%= link_to "Modifier mon commentaire", edit_event_review_path(@event, review) %>
-      <br>
-      <%= link_to "Supprimer mon commentaire", event_review_path(@event, review), method: :delete, data: { confirm: "Supprimer mon commentaire ?" } %>
-    <% end %> <br>
+    <% end %>
+    <br>
+    <%if (current_user == review.user) || current_user.admin? %>
+      <%= link_to "Supprimer ce commentaire", event_review_path(@event, review), method: :delete, data: { confirm: "Supprimer mon commentaire ?" } %>
+    <% end %>
+    <br>
 
 
 
