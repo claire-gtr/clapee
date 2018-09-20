@@ -1,0 +1,2 @@
+var likeWrapper = document.getElementById('like-<%= @review.id %>');
+likeWrapper.innerHTML = "<%= j render "likes/like", review: @review %>";

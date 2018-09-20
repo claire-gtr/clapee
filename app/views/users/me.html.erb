@@ -5,7 +5,7 @@
 
 Mes concerts notés 5 étoiles : <br>
 
-<% @user.reviews.where(stars: "5").each do |review| %>
+<% current_user.reviews.where(stars: "5").each do |review| %>
   <%= review.event.title %> <br>
   <p> Le <%= review.created_at %> vous avez écrit l'avis suivant :</p>
   <%= review.content %> <br>

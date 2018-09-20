@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_12_151911) do
+ActiveRecord::Schema.define(version: 2018_09_18_102138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2018_09_12_151911) do
     t.integer "digitick_id"
     t.string "digitick_url"
     t.bigint "location_id"
+    t.datetime "digitick_date"
+    t.string "min_price"
     t.index ["location_id"], name: "index_events_on_location_id"
   end
 

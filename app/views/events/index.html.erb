@@ -1,8 +1,19 @@
 <% @events.each do |event| %>
+  <%= link_to event_path(event) do %>
+    <%= image_tag event.event_picture_url, width: 300 %>
+  <% end %>
+  <!--
   <%= event.title %>
   <br>
   <%= event.location.name %>
   <br>
+  À partir de <%= event.min_price %>
+  <br>
+  Créé le <%= event.digitick_date %>
+  <br>
   <%= link_to "Voir", event_path(event) %>
   <br><br>
+-->
 <% end %>
+
+<%= raw pagy_nav_bootstrap(@pagy) %>
