@@ -1,28 +1,28 @@
-class EventPolicy < ApplicationPolicy
+class ReviewPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
 
-  def index?
+  def create?
     true
   end
 
-  def show?
-    true
+  def new?
+    create?
   end
 
   def update?
-    user_is_admin?
+    record.user == user
   end
 
   def edit?
-    user_is_admin?
+    record.user == user
   end
 
   def destroy?
-    user_is_admin?
+    (record.user == user) || user_is_admin?
   end
 
   private
@@ -34,4 +34,5 @@ class EventPolicy < ApplicationPolicy
       user.admin
     end
   end
+
 end

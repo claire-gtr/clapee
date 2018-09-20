@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'events#index'
-  resources :events, only: [:show, :edit, :update, :destroy ] do
-    resources :reviews
+  resources :events, shallow: true, only: [:show, :edit, :update, :destroy ] do
+    resources :reviews, only: [:create, :edit, :update, :destroy] do
+      resources :likes, only: [:create, :destroy]
+    end
   end
-  resources :users, only: [:show]
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get "me" => "users#me"
 end

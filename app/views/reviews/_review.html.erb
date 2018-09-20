@@ -1,25 +1,34 @@
 
 
-    <%= review.content %>
+<%= review.content %>
 
-      <% review.stars.to_i.times do %>
-        <i class="fas fa-star"></i>
-      <% end %>
 
-      <% (5 - review.stars.to_i).times do %>
-        <i class="far fa-star"></i>
-      <% end %>
+<div id="like-<%= review.id %>">
+  <% if like = current_user.liked?(review) %>
+    <%= render "likes/dislike", like: like, review: review %>
+  <% else %>
+    <%= render "likes/like", review: review %>
+  <% end %>
+</div>
+
+<% review.stars.to_i.times do %>
+  <i class="fas fa-star"></i>
+<% end %>
+
+<% (5 - review.stars.to_i).times do %>
+  <i class="far fa-star"></i>
+<% end %>
 
   <br>
 
-    <%if (current_user == review.user) %>
-      <%= link_to "Modifier mon commentaire", edit_event_review_path(@event, review) %>
-    <% end %>
-    <br>
-    <%if (current_user == review.user) || current_user.admin? %>
-      <%= link_to "Supprimer ce commentaire", event_review_path(@event, review), method: :delete, data: { confirm: "Supprimer mon commentaire ?" } %>
-    <% end %>
-    <br>
+<%if policy(review).update? %>
+  <%= link_to "Modifier mon commentaire", edit_review_path(review) %>
+<% end %>
+<br>
+<% if policy(review).destroy? %>
+  <%= link_to "Supprimer ce commentaire", review_path(review), method: :delete, data: { confirm: "Supprimer mon commentaire ?" } %>
+<% end %>
+<br>
 
 
 

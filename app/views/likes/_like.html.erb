@@ -1,0 +1,4 @@
+<%= link_to review_likes_path(review), remote: true, method: :post do %>
+  <%= inline_svg('heart', width: 16, class: "heart-grey") %>
+<% end %>
+(<span id="like-count-<%= review.id %>"><%= review.likes.count %></span>)

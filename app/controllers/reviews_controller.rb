@@ -1,7 +1,9 @@
 class ReviewsController < ApplicationController
+  before_action :set_review, only: [:edit, :update, :destroy]
   def create
     @event = Event.find(params[:event_id])
     @review = @event.reviews.new(review_params)
+    authorize @review
     @review.user = current_user
     if @review.save
        respond_to do |format|
@@ -17,19 +19,14 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:event_id])
-    @review = Review.find(params[:id])
   end
 
   def update
-    @event = Event.find(params[:event_id])
-    @review = Review.find(params[:id])
     @review.update(review_params)
-    redirect_to event_path(@event)
+    redirect_to event_path(@review.event)
   end
 
   def destroy
-    @review = Review.find(params[:id])
     @event = @review.event
     @review.destroy
     redirect_to event_path(@event)
@@ -39,5 +36,10 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:id, :content, :stars, :user_id, :event_id)
+  end
+
+  def set_review
+    @review = Review.find(params[:id])
+    authorize @review
   end
 end

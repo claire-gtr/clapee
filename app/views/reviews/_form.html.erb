@@ -1,6 +1,6 @@
   <%= simple_form_for( [@event, @review], remote: true) do |f| %>
-      <%= f.input :content, method: :create, label: false, placeholder: "Votre commentaire..."%>
-      <%= f.collection_radio_buttons :stars, [[1, '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']], :first, :last %>
-      <%= f.button :submit, "Publier", class: "btn btn-primary" %>
-    <% end %>
-
+    <%= f.error_notification %>
+    <%= f.input :content, method: :create, label: false, placeholder: "Votre commentaire...", hint: 'La note minimum est 1 étoile'%>
+    <%= f.collection_radio_buttons :stars, [[1, '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']], :first, :last %>
+    <%= f.button :submit, "Publier", class: "btn btn-primary" %>
+  <% end %>

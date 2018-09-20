@@ -1,6 +1,9 @@
 <%= @event.title %>
 <br>
 <%= @event.description %>
+<%= @event.event_picture_url %>
+<%= image_tag @event.event_picture_url %>
+<%= link_to "Acheter un billet", @event.digitick_url, target: "_blank" %>
 <br>
 <% @star_total = 0 %>
 <% if @event.reviews.count > 0 %>
@@ -30,17 +33,17 @@ Moyenne des notes données :
   <% if @event.reviews.count == 0 %>
     Soyez le premier !
   <% else %>
-    <% @event.reviews.order("created_at ASC").each do |review| %>
-      <%= render "reviews/review", event: @event, review: review %>
-    <%end%>
+    <%= render @event.reviews.order("created_at ASC") %>
   <%end%>
 </div>
 
 
 
-<%if user_signed_in? %>
+<% if user_signed_in? %>
     Laisser un commentaire :
     <%= render "reviews/form", event: @event, review: @review %>
+<% else %>
+  Connectez-vous pour donner votre avis !
 <% end %>
 
 <%= link_to "Retour à la liste des concerts", root_path %>
