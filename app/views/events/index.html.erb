@@ -1,3 +1,13 @@
+
+<%= form_tag root_path, method: :get do %>
+  <%= text_field_tag :search,
+    params[:search],
+    class: "form-control",
+    placeholder: "Trouver un concert"
+  %>
+  <%= submit_tag "Rechercher", class: "btn btn-danger" %>
+<% end %>
+
 <% @events.each do |event| %>
   <%= link_to event_path(event) do %>
     <%= image_tag event.event_picture_url, width: 300 %>
@@ -15,5 +25,7 @@
   <br><br>
 -->
 <% end %>
+
+<br>
 
 <%= raw pagy_nav_bootstrap(@pagy) %>

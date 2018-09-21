@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   end
 
   get "me" => "users#me"
+
 end

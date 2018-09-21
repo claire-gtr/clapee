@@ -18,6 +18,8 @@ namespace :digitick do
         town: event.xpath('venueTown').text,
         address: event.xpath('venueAdress').text,
         zipcode: event.xpath('venueZipcode').text,
+        location_latitude: event.xpath('venueLatitude').text,
+        location_longitude: event.xpath('venueLongitude').text,
       ).find_or_create_by(location_digitick_id: location_digitick_id)
 
       event_digitick_id = event.xpath('eventId').text
@@ -34,6 +36,7 @@ namespace :digitick do
         min_price: event.xpath('minTarif').text,
         digitick_id: event_digitick_id,
         location: location,
+        music_genre: event.xpath('subCategoryName').text,
         digitick_date: Time.parse(event.xpath('dateStart').text)
       ).find_or_create_by(digitick_id: event_digitick_id)
 

@@ -3,7 +3,11 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @events = pagy(policy_scope(Event), items: 10)
+    @results = policy_scope(Event)
+    if params[:search]
+      @results = @results.search(params[:search])
+    end
+    @pagy, @events = pagy(@results, items: 10)
   end
 
   def show
