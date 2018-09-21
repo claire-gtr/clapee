@@ -12,6 +12,7 @@ gem 'rails', '5.2.0'
 gem 'redis'
 gem 'pundit'
 gem 'pagy'
+gem 'pg_search', '~> 1.0', '>= 1.0.5'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'

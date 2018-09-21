@@ -1,10 +1,10 @@
-<%= @event.title %>
-<br>
-<%= @event.description %>
-<%= @event.event_picture_url %>
-<%= image_tag @event.event_picture_url %>
-<%= link_to "Acheter un billet", @event.digitick_url, target: "_blank" %>
-<br>
+<%= @event.title %><br>
+<%= @event.music_genre %> <br>
+<%= @event.description %> <br>
+<%= @event.status %> <br>
+<h6>À partir de <%= @event.min_price %> € </h6>
+<%= image_tag @event.event_picture_url %> <br>
+<%= link_to "Acheter un billet", @event.digitick_url, target: "_blank" %> <br>
 <% @star_total = 0 %>
 <% if @event.reviews.count > 0 %>
   <% @event.reviews.each do |review| %>
@@ -12,7 +12,6 @@
   <% end %>
   <% @star_average = @star_total.div(@event.reviews.count).round%>
 <% end %>
-
 <br>
 
 Moyenne des notes données :
