@@ -20,6 +20,8 @@
     <%= f.input :username,
                 required: false,
                 input_html: { autocomplete: "off"} %>
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
     <%= f.input :current_password,
                 hint: "We need your current password to confirm your changes",
                 required: true,
@@ -35,4 +37,4 @@
 
 <p>Vous pouvez choisir de nous quitter <%= link_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", user_path(current_user) %>
+<%= link_to "Back", me_path %>
