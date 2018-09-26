@@ -1,0 +1,51 @@
+
+.footer {
+  background: $blue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding: 0px 10px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-decoration: none;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+}
+.footer-links a {
+  transition: all 0.2s;
+  width: 30px;
+  height: 30px;
+  background-color: $white;
+  color: $blue;
+  border-radius: 50px;
+  font-size: 18px;
+  margin: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.footer-links a:hover {
+  background-color: $light-blue;
+  box-shadow: rgba(0,0,0,0.3) 0 3px 5px, rgba(0,0,0,0.2) 0 1px 3px;
+}
+
+
+.footer-copyright {
+  color: $blue-typo-light;
+  font-size: 10px;
+  text-decoration: none;
+}
+
+a.footer-copyright {
+  color: $blue-typo-light !important;
+}
+
+.footer .fa-instagram {
+  font-weight: 400;
+}
