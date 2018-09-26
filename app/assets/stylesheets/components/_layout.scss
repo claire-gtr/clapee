@@ -5,9 +5,13 @@ html, body {
 body {
  display: flex;
  flex-direction: column;
- margin-top: 70px;
 }
 
 .content{
   flex-grow: 1;
 }
+
+.container-margin {
+  margin-top: 70px;
+}
+

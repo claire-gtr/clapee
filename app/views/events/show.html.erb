@@ -1,58 +1,65 @@
-<%= @event.title %><br>
-<%= @event.music_genre %> <br>
-<%= @event.description %> <br>
-<%= @event.status %> <br>
-<h6>À partir de <%= @event.min_price %> € </h6>
-<%= image_tag @event.event_picture_url %> <br>
-<%= link_to "Acheter un billet", @event.digitick_url, target: "_blank" %> <br>
-<% @star_total = 0 %>
-<% if @event.reviews.count > 0 %>
-  <% @event.reviews.each do |review| %>
-    <% @star_total += review.stars.to_i %>
-  <% end %>
-  <% @star_average = @star_total.div(@event.reviews.count).round%>
-<% end %>
-<br>
 
-Moyenne des notes données :
-<% if @event.reviews.count == 0 %>
-  Donnez votre avis en premier !
-<% else %>
-  <% @star_average.times do %>
-    <i class="fas fa-star"></i>
-  <% end %>
-  <% (5 - @star_average).times do %>
-    <i class="far fa-star"></i>
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="container-margin">
+    <div class="event-info">
+      <%= image_tag @event.event_picture_url %> <br>
+      <%= @event.title %><br>
+      <%= @event.music_genre %> <br>
+      <%= @event.description %> <br>
+      <%= @event.status %> <br>
+      <h6>À partir de <%= @event.min_price %> € </h6>
+      <%= link_to "Acheter un billet", @event.digitick_url, target: "_blank" %> <br>
+      <% @star_total = 0 %>
+      <% if @event.reviews.count > 0 %>
+        <% @event.reviews.each do |review| %>
+          <% @star_total += review.stars.to_i %>
+        <% end %>
+        <% @star_average = @star_total.div(@event.reviews.count).round%>
+      <% end %>
+      <br>
+    </div>
 
-<br><br>
+    Moyenne des notes données :
+    <% if @event.reviews.count == 0 %>
+      Donnez votre avis en premier !
+    <% else %>
+      <% @star_average.times do %>
+        <i class="fas fa-star"></i>
+      <% end %>
+      <% (5 - @star_average).times do %>
+        <i class="far fa-star"></i>
+      <% end %>
+    <% end %>
 
-<div id="reviews">
-  <% if @event.reviews.count == 0 %>
-    Soyez le premier !
-  <% else %>
-    <%= render @event.reviews.order("created_at ASC") %>
-  <%end%>
+    <br><br>
+
+    <div id="reviews">
+      <% if @event.reviews.count == 0 %>
+        Soyez le premier !
+      <% else %>
+        <%= render @event.reviews.order("created_at ASC") %>
+      <%end%>
+    </div>
+
+
+
+    <% if user_signed_in? %>
+        Laisser un commentaire :
+        <%= render "reviews/form", event: @event, review: @review %>
+    <% else %>
+      Connectez-vous pour donner votre avis !
+    <% end %>
+
+    <%= link_to "Retour à la liste des concerts", root_path %>
+    <br>
+
+
+    <%if policy(@event).edit? %>
+      <%= link_to "Modifier", edit_event_path(@event) %>
+    <% end %>
+
+    <%if policy(@event).destroy? %>
+      <%= link_to "Supprimer", event_path(@event), method: :delete, data: { confirm: "Confirmer la suppression de ce concert ? Vous ne pourrez pas revenir en arrière. " } %>
+    <% end %>
+  </div>
 </div>
-
-
-
-<% if user_signed_in? %>
-    Laisser un commentaire :
-    <%= render "reviews/form", event: @event, review: @review %>
-<% else %>
-  Connectez-vous pour donner votre avis !
-<% end %>
-
-<%= link_to "Retour à la liste des concerts", root_path %>
-<br>
-
-
-<%if policy(@event).edit? %>
-  <%= link_to "Modifier", edit_event_path(@event) %>
-<% end %>
-
-<%if policy(@event).destroy? %>
-  <%= link_to "Supprimer", event_path(@event), method: :delete, data: { confirm: "Confirmer la suppression de ce concert ? Vous ne pourrez pas revenir en arrière. " } %>
-<% end %>
