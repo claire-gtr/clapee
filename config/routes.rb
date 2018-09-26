@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   end
 
   get "me" => "users#me"
+   get :legalpage, to: 'pages#legalpage'
 
 end
