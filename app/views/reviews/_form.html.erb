@@ -2,7 +2,6 @@
     <%= f.error_notification %>
     <%= f.input :content, method: :create, label: false, placeholder: "Votre commentaire..."%>
     <%= f.error :content%>
-    <h1>Rate me</h1>
     <div class="rating-stars">
       <%= f.collection_radio_buttons :stars, (1..5).to_a.reverse, :to_i, :to_i, boolean_style: :inline, item_wrapper_tag: false do |b| %>
         <%= b.radio_button class: "star star-#{b.text}" %>
