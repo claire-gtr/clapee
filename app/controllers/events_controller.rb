@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     if params[:search]
       @results = @results.search(params[:search])
     end
-    @pagy, @events = pagy(@results, items: 10)
+    @pagy, @events = pagy(@results, items: 12)
   end
 
   def show

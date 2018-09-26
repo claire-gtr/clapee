@@ -9,10 +9,26 @@
   <%= submit_tag "Rechercher", class: "btn btn-danger" %>
 <% end %>
 
-<% @events.each do |event| %>
-  <%= link_to event_path(event) do %>
-    <%= image_tag event.event_picture_url, width: 300 %>
-  <% end %>
+<div class="container">
+  <div class="row">
+
+    <% @events.each do |event| %>
+    <div class="col-xs-6 col-lg-3 col-md-3">
+
+        <div class="card" style="background-image: url(<%= event.event_picture_url %>);">
+          <div class="card-filter"></div>
+          <div class="card-infos">
+            <div class="card-titles">
+              <h4 class="card-title">À partir de <%= event.min_price %>&nbsp;€</h4>
+            </div>
+            <div class="card-content">
+              <button type="button" class="btn btn-primary">Voir</button>
+            </div>
+          </div>
+
+        </div>
+
+    </div>
   <!--
   <%= event.title %>
   <br>
@@ -25,7 +41,10 @@
   <%= link_to "Voir", event_path(event) %>
   <br><br>
 -->
-<% end %>
+    <% end %>
+  </div>
+</div>
+
 
 <br>
 
