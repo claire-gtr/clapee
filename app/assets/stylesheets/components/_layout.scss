@@ -1,0 +1,17 @@
+html, body {
+  min-height: 100vh;
+}
+
+body {
+ display: flex;
+ flex-direction: column;
+}
+
+.content{
+  flex-grow: 1;
+}
+
+.container-margin {
+  margin-top: 70px;
+}
+
