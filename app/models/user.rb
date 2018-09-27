@@ -7,6 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
+  validates :username, presence: true, length: { minimum: 2 }, uniqueness: true
 
   def liked?(review)
     review.likes.find_by(user: self)
