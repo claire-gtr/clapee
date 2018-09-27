@@ -1,17 +1,29 @@
 #event-img > img {
-  max-height: 500px;
+  max-width: 100%;
   margin: 40px auto 0px;
 
 }
 
 .event-infos {
-  margin: 70px auto 0px;
+  margin: 4rem auto 0px;
+  max-height: 100%;
 
   .event-title {
-    font-size: 60px;
+    font-size: 4rem;
   }
   .event-genre {
-    font-size: 30px;
+    font-weight: lighter;
+  }
+  .event-date {
+    color: $red-clapee;
+    font-weight: bold;
+  }
+  .event-status{
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .btn-clapee {
+    margin-top: 2rem;
   }
 }
 
