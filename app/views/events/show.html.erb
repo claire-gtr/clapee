@@ -10,56 +10,29 @@
           <div class="event-genre"> <%= @event.music_genre %></div>
           <div class="event-date"> <%= @event.digitick_date.strftime("%e %b %Y - %Hh%M") %></div>
           <div class="event-location">
-            <%= @event.location.name %>, <%= @event.location.town %>
+            <%= @event.location.name.split(/ |\_/).map(&:capitalize).join(" ") %>, <%= @event.location.town.split(/ |\_/).map(&:capitalize).join(" ") %>
           </div><br>
           <div class="event-status"><%= @event.status %></div>
             <h6>À partir de <%= @event.min_price %> € </h6>
+            <%= render "events/stars-average", event: @event %>
 
             <div type="button"><%= link_to "Acheter un billet", @event.digitick_url, target: "_blank", class:"btn btn-primary btn-clapee" %></div>
         </div>
       </div>
     </div>
 
-      <div class="row">
-        <div class="col-xs-12 col-md-12 col-offset-md-2">
-          <%= @event.description %> <br>
-        </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-12 col-offset-md-2">
+        <%= @event.description %> <br>
       </div>
-
-    <div class="average-stars">
-      <% @star_total = 0 %>
-        <% if @event.reviews.count > 0 %>
-          <% @event.reviews.each do |review| %>
-            <% @star_total += review.stars.to_i %>
-          <% end %>
-        <% @star_average = @star_total.div(@event.reviews.count).round%>
-      <% end %>
-
-      <% if @event.reviews.count == 0 %>
-        Donnez votre avis en premier !
-      <% else %>
-      <ul class="list-inline">
-        <li>
-          <% @star_average.times do %>
-            <i class="fas fa-star"></i>
-          <% end %>
-          <% (5 - @star_average).times do %>
-            <i class="far fa-star"></i>
-          <% end %>
-        </li>
-        <li class="display-average-stars">
-          <em>(<%= @event.reviews.count %> avis)</em>
-        </li>
-      <% end %>
     </div>
-
 
     <div class="new-review-form">
       <% if user_signed_in? %>
           Laissez votre avis :
           <%= render "reviews/form", event: @event, review: @review %>
       <% else %>
-        Connectez-vous pour donner votre avis !
+        <%= link_to t(".sign_in", default: "Connectez-vous pour donner votre avis"), new_user_session_path %>
       <% end %>
     </div>
 

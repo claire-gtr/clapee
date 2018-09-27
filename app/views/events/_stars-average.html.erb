@@ -1,0 +1,27 @@
+<div class="average-stars">
+  <% @star_total = 0 %>
+    <% if @event.reviews.count > 0 %>
+      <% @event.reviews.each do |review| %>
+        <% @star_total += review.stars.to_i %>
+      <% end %>
+    <% @star_average = @star_total.div(@event.reviews.count).round%>
+  <% end %>
+
+  <% if @event.reviews.count == 0 %>
+    <br>
+  <% else %>
+  <ul class="list-inline">
+    <li>
+      <% @star_average.times do %>
+        <i class="fas fa-star"></i>
+      <% end %>
+      <% (5 - @star_average).times do %>
+        <i class="far fa-star"></i>
+      <% end %>
+    </li>
+    <li class="display-average-stars">
+      <em>(<%= @event.reviews.count %> avis)</em>
+    </li>
+  <% end %>
+</div>
+
