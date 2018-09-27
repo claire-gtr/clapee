@@ -1,34 +1,49 @@
+<div class="display-review">
+  <div class="review-card">
+
+    <div class="review-user">
+      <%= review.user.first_name.downcase %> <%= review.user.last_name.first.downcase %>. à donné cet avis le <%= review.created_at.strftime("%e.%m.%y")%> à <%= review.created_at.strftime("%Hh%M")%> :
+    </div>
+
+    <ul class="list-inline">
+      <li>
+        <div class="review-stars">
+          <% review.stars.to_i.times do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+
+          <% (5 - review.stars.to_i).times do %>
+            <i class="far fa-star"></i>
+          <% end %>
+        </div>
+      </li>
+      <li>
+        <div class="review-content">
+          <em> <%= review.content %> </em>
+        </div>
+      </li>
+    </ul>
 
 
-<%= review.content %>
+    <div class="review-likes">
+      <div id="like-<%= review.id %>">
+        <% if like = current_user.liked?(review) %>
+          <%= render "likes/dislike", like: like, review: review %>
+        <% else %>
+          <%= render "likes/like", review: review %>
+        <% end %>
+      </div>
+    </div>
 
-
-<div id="like-<%= review.id %>">
-  <% if like = current_user.liked?(review) %>
-    <%= render "likes/dislike", like: like, review: review %>
-  <% else %>
-    <%= render "likes/like", review: review %>
-  <% end %>
+    <%if policy(review).update? %>
+      <%= link_to "Modifier mon commentaire", edit_review_path(review) %>
+    <% end %>
+    <br>
+    <% if policy(review).destroy? %>
+      <%= link_to "Supprimer ce commentaire", review_path(review), method: :delete, data: { confirm: "Supprimer mon commentaire ?" } %>
+    <% end %>
+  </div>
 </div>
-
-<% review.stars.to_i.times do %>
-  <i class="fas fa-star"></i>
-<% end %>
-
-<% (5 - review.stars.to_i).times do %>
-  <i class="far fa-star"></i>
-<% end %>
-
-  <br>
-
-<%if policy(review).update? %>
-  <%= link_to "Modifier mon commentaire", edit_review_path(review) %>
-<% end %>
-<br>
-<% if policy(review).destroy? %>
-  <%= link_to "Supprimer ce commentaire", review_path(review), method: :delete, data: { confirm: "Supprimer mon commentaire ?" } %>
-<% end %>
-<br>
 
 
 
