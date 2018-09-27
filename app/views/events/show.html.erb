@@ -1,22 +1,38 @@
 <div class="container">
   <div class="container-margin">
-    <div class="event-info">
-      <%= image_tag @event.event_picture_url %> <br>
-      <%= @event.title %><br>
-      <%= @event.music_genre %> <br>
-      <%= @event.description %> <br>
-      <%= @event.status %> <br>
-      <h6>À partir de <%= @event.min_price %> € </h6>
-      <%= link_to "Acheter un billet", @event.digitick_url, target: "_blank" %> <br>
-      <% @star_total = 0 %>
-      <% if @event.reviews.count > 0 %>
-        <% @event.reviews.each do |review| %>
-          <% @star_total += review.stars.to_i %>
-        <% end %>
-        <% @star_average = @star_total.div(@event.reviews.count).round%>
-      <% end %>
-      <br>
+    <div class="row">
+      <div class="col-xs-6 col-md-4">
+        <div id="event-img"> <%= image_tag @event.event_picture_url %></div> <br>
+      </div>
+      <div class="col-xs-6 col-md-4 event-infos">
+        <div class="event-title"><%= @event.title %></div>
+        <div class="event-genre"> <%= @event.music_genre %></div>
+        <div class="event-date"> <%= @event.digitick_date %></div>
+        <div class="event-location">
+          <%= @event.location.name %>, <%= @event.location.town %>
+        </div><br>
+        <div class="event-status">
+          <%= @event.status %> <br>
+          <h6>À partir de <%= @event.min_price %> € </h6>
+        </div>
+          <div type="button"><%= link_to "Acheter un billet", @event.digitick_url, target: "_blank", class:"btn btn-primary btn-clapee" %></div>
+      </div>
     </div>
+
+      <div class="row">
+        <div class="col-md-8 col-offset-md-2">
+          <%= @event.description %> <br>
+          <% @star_total = 0 %>
+          <% if @event.reviews.count > 0 %>
+            <% @event.reviews.each do |review| %>
+              <% @star_total += review.stars.to_i %>
+            <% end %>
+            <% @star_average = @star_total.div(@event.reviews.count).round%>
+          <% end %>
+          <br>
+        </div>
+      </div>
+
 
     Moyenne des notes données :
     <% if @event.reviews.count == 0 %>

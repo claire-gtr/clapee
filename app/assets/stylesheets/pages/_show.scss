@@ -1,3 +1,17 @@
-.event-info {
+#event-img > img {
+  max-height: 500px;
+  margin: 40px auto 0px;
 
 }
+
+.event-infos {
+  margin: 70px auto 0px;
+
+  .event-title {
+    font-size: 60px;
+  }
+  .event-genre {
+    font-size: 30px;
+  }
+}
+
