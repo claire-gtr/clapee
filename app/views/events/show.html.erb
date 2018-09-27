@@ -23,45 +23,64 @@
       <div class="row">
         <div class="col-xs-12 col-md-12 col-offset-md-2">
           <%= @event.description %> <br>
-          <% @star_total = 0 %>
-          <% if @event.reviews.count > 0 %>
-            <% @event.reviews.each do |review| %>
-              <% @star_total += review.stars.to_i %>
-            <% end %>
-            <% @star_average = @star_total.div(@event.reviews.count).round%>
-          <% end %>
-          <br>
         </div>
       </div>
 
-
-    Moyenne des notes données :
-    <% if @event.reviews.count == 0 %>
-      Donnez votre avis en premier !
-    <% else %>
-      <% @star_average.times do %>
-        <i class="fas fa-star"></i>
+    <div class="average-stars">
+      <% @star_total = 0 %>
+        <% if @event.reviews.count > 0 %>
+          <% @event.reviews.each do |review| %>
+            <% @star_total += review.stars.to_i %>
+          <% end %>
+        <% @star_average = @star_total.div(@event.reviews.count).round%>
       <% end %>
-      <% (5 - @star_average).times do %>
-        <i class="far fa-star"></i>
-      <% end %>
-    <% end %>
 
-    <br><br>
+      <% if @event.reviews.count == 0 %>
+        Donnez votre avis en premier !
+      <% else %>
+      <ul class="list-inline">
+        <li>
+          <% @star_average.times do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+          <% (5 - @star_average).times do %>
+            <i class="far fa-star"></i>
+          <% end %>
+        </li>
+        <li class="display-average-stars">
+          <em>(<%= @event.reviews.count %> avis)</em>
+        </li>
+      <% end %>
+    </div>
+
+
+    <div class="new-review-form">
+      <% if user_signed_in? %>
+          Laissez votre avis :
+          <%= render "reviews/form", event: @event, review: @review %>
+      <% else %>
+        Connectez-vous pour donner votre avis !
+      <% end %>
+    </div>
+
 
 
     <div id="reviews">
       <% if @event.reviews.count == 0 %>
-        Soyez le premier !
+        <div class="review-title-presentation">
+          Soyez le premier à donner votre avis !
+        </div>
       <% else %>
-        <%= render @event.reviews.order("created_at ASC") %>
+        <div class="review-title-presentation">
+          Les avis des spectateurs
+        </div>
+        <%= render @event.reviews.order("created_at DESC") %>
       <%end%>
     </div>
 
-
-    <%= link_to "Retour à la liste des concerts", root_path %>
-    <br>
-
+  <div class="back-home">
+    <%= link_to "Retour à la liste des concerts", root_path, class:"btn btn-default" %>
+  </div>
 
     <%if policy(@event).edit? %>
       <%= link_to "Modifier", edit_event_path(@event) %>
