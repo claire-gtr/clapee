@@ -48,6 +48,7 @@
 
     <br><br>
 
+
     <div id="reviews">
       <% if @event.reviews.count == 0 %>
         Soyez le premier !
@@ -56,14 +57,6 @@
       <%end%>
     </div>
 
-
-
-    <% if user_signed_in? %>
-        Laisser un commentaire :
-        <%= render "reviews/form", event: @event, review: @review %>
-    <% else %>
-      Connectez-vous pour donner votre avis !
-    <% end %>
 
     <%= link_to "Retour à la liste des concerts", root_path %>
     <br>
