@@ -24,24 +24,30 @@
       </li>
     </ul>
 
-
-    <div class="review-likes">
-      <div id="like-<%= review.id %>">
-        <% if like = current_user.liked?(review) %>
-          <%= render "likes/dislike", like: like, review: review %>
-        <% else %>
-          <%= render "likes/like", review: review %>
+    <ul class="list-inline reviews-change">
+      <li>
+        <div class="review-likes">
+          <div id="like-<%= review.id %>">
+            <% if like = current_user.liked?(review) %>
+              <%= render "likes/dislike", like: like, review: review %>
+            <% else %>
+              <%= render "likes/like", review: review %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+      <li>
+        <%if policy(review).update? %>
+          <%= link_to "Modifier mon commentaire", edit_review_path(review) %>
         <% end %>
-      </div>
-    </div>
+      </li>
+      <li>
+        <% if policy(review).destroy? %>
+          <%= link_to "Supprimer ce commentaire", review_path(review), method: :delete, data: { confirm: "Supprimer mon commentaire ?" } %>
+        <% end %>
+      </li>
+    </ul>
 
-    <%if policy(review).update? %>
-      <%= link_to "Modifier mon commentaire", edit_review_path(review) %>
-    <% end %>
-    <br>
-    <% if policy(review).destroy? %>
-      <%= link_to "Supprimer ce commentaire", review_path(review), method: :delete, data: { confirm: "Supprimer mon commentaire ?" } %>
-    <% end %>
   </div>
 </div>
 

@@ -1,27 +1,40 @@
+.review-title-presentation {
+  margin-bottom: 30px;
+  text-align: center;
+  color: $blue;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
 .review-card {
   max-width: 100%;
+  margin-top: 15px;
+  border-bottom: 0.1px solid #e2e2e2;
 }
 
 .review-user {
   color: $blue-typo-light;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
 }
 
-.review-content {
+.review-content, .review-likes {
   color: $dark-grey;
-  font-size: 13px;
-}
-
-.review-likes {
-  color: $dark-grey;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .review-stars {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .list-inline {
   margin-bottom: 4px;
+}
+
+.reviews-change {
+  font-size: 9px;
+  color: $blue-typo-light;
+  a {
+    text-decoration: none;
+  }
 }
