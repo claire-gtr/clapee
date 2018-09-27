@@ -1,0 +1,17 @@
+.new-review-form {
+  font-size: 18px;
+  font-weight: 400;
+  color: $blue-typo-light;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  letter-spacing: 2px;
+}
+
+.review-form {
+  margin: 5px;
+  .form-control {
+  font-size: 14px;
+  font-weight: 300;
+  }
+}
+
