@@ -28,10 +28,14 @@
       <li>
         <div class="review-likes">
           <div id="like-<%= review.id %>">
-            <% if like = current_user.liked?(review) %>
-              <%= render "likes/dislike", like: like, review: review %>
-            <% else %>
+            <% unless user_signed_in? %>
               <%= render "likes/like", review: review %>
+            <% else %>
+              <% if like = current_user.liked?(review) %>
+                <%= render "likes/dislike", like: like, review: review %>
+              <% else %>
+                <%= render "likes/like", review: review %>
+              <% end %>
             <% end %>
           </div>
         </div>
