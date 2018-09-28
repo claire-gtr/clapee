@@ -49,3 +49,13 @@
   text-decoration: none;
   color: $blue;
 }
+
+.btn-back-concert {
+  background-color: $red-clapee;
+  border-radius: 4px;
+  color: white;
+}
+.btn-back-concert:hover {
+  color: white;
+  background-color: #77313a;
+}
