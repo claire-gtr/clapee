@@ -15,7 +15,7 @@
             <div class="profile-title"><%= review.event.title %> </div>
             <div class="profile-avis"> Le <%= review.created_at.strftime("%e %b %Y - %Hh%M") %> vous avez écrit l'avis suivant :</div>
             <%= review.content %> <br>
-            <div class="profile-voir-concert"><%= link_to "Voir le concert", event_path(review.event) %></div> <br>
+            <div class="profile-voir-concert"><%= link_to "Voir le concert", event_path(review.event), class:"links" %></div> <br>
           <% end %>
 
           <br>
