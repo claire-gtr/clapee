@@ -1,6 +1,6 @@
 $star-danger: #EE5F5B;
 $star-muted: #CCC;
-$star-selected: #F3BB3D;
+$star-selected: $blue;
 
 .rating-stars {
   display: inline-block;
@@ -33,3 +33,9 @@ $star-selected: #F3BB3D;
   }
 
 }
+
+
+  .clap-blue path {
+    fill: $star-selected;
+  }
+
