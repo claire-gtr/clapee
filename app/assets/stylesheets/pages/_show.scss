@@ -6,7 +6,7 @@
 
 .event-infos {
   margin: 4rem auto 0px;
-  max-height: 100%;
+  max-height: 95%;
 
   .event-title {
     font-size: 4rem;
@@ -25,6 +25,12 @@
   .btn-clapee {
     margin-top: 2rem;
   }
+}
+
+.event-description {
+  margin: 7px;
+  font-size: 14px;
+  font-weight: 300;
 }
 
 .back-home {
