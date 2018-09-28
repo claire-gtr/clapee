@@ -1,0 +1,27 @@
+.profile-picture {
+  width: 100%;
+  margin: 40px auto 0px;
+}
+
+.profile-infos {
+  width: 100%;
+
+  .profile-concert {
+    color: $red-clapee;
+    font-weight: bolder;
+  }
+
+  .profile-title {
+    font-weight: bolder;
+  }
+
+  .profile-avis {
+    color: $blue-typo-light;
+    font-size: 1.5rem;
+  }
+
+  .profile-voir-concert {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+  }
+}
