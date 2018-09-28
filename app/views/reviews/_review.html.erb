@@ -9,11 +9,11 @@
       <li>
         <div class="review-stars">
           <% review.stars.to_i.times do %>
-            <i class="fas fa-star"></i>
+            <%= inline_svg("clap", width: 16, class:"clap-blue") %>
           <% end %>
 
           <% (5 - review.stars.to_i).times do %>
-            <i class="far fa-star"></i>
+            <%= inline_svg("clap", width: 16) %>
           <% end %>
         </div>
       </li>
