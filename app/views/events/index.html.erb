@@ -27,10 +27,10 @@
       <div class="col-xs-6 col-lg-3 col-md-3">
         <div class="card" style="background-image: url(<%= event.event_picture_url %>);">
           <div class="card-infos">
-            <div class="card-title"><%= event.title %></div>
+            <div class="card-title"><%= event.title.upcase %></div>
             <div class="card-location"><%= event.location.name.split(/ |\_/).map(&:capitalize).join(" ") %></div>
-            <div class="card-date"><%= event.digitick_date.strftime("%d %m %Y") %></div>
-            <div type="button"><%= link_to "Voir plus", event_path(event), class:"btn btn-primary btn-clapee"%></div>
+            <div class="card-date"> <em> <%= event.digitick_date.strftime("%d %b %Y") %></em></div>
+            <div type="button"><%= link_to "Voir plus", event_path(event), class:"btn btn-primary btn-clapee btn-index"%></div>
           </div>
         </div>
       </div>

@@ -1,5 +1,15 @@
-<%= simple_form_for([@event, @review]) do |f| %>
-  <%= f.input :content, label: false%>
-  <%= f.input :review_id, as: :hidden, input_html: { value: params[:review_id]} %>
-  <%= f.button :submit, "Modifier", class: "btn btn-primary" %>
-<% end %>
+<div class="container-margin">
+  <div class="container">
+    <div class="form-edit-review">
+      <div class="title-review-form">
+        <br>
+        Modifier le contenu de votre avis :
+      </div>
+      <%= simple_form_for([@event, @review]) do |f| %>
+        <%= f.input :content, label: false%>
+        <%= f.input :review_id, as: :hidden, input_html: { value: params[:review_id]} %>
+        <%= f.button :submit, "Modifier", class: "btn btn-primary btn-clapee" %>
+      <% end %>
+    </div>
+  </div>
+</div>
