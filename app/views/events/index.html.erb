@@ -3,20 +3,22 @@
 <%= render "shared/banner" %>
 
 <div class="container">
-  <div class="form-inline form-search">
-    <div class="row">
-      <div class="col-xs-12 col-lg-12">
-        <div class="form-group">
-            <%= form_tag root_path, method: :get do %>
-              <%= text_field_tag :search,
-                params[:search],
-                class: "form-control field-search",
-                placeholder: "Trouver un concert"
-              %>
-            <%= submit_tag "Rechercher", class: "btn btn-primary btn-clapee" %>
-          </div>
-        <% end %>
-      </div>
+  <div class="row">
+    <div class="col-xs-12 col-lg-12">
+      <div class="form-group form-inline form-search">
+        <div class="field-search">
+          <%= form_tag root_path, method: :get do %>
+            <%= text_field_tag :search,
+              params[:search],
+              class: "form-control field-search",
+              placeholder: "Trouver un concert"
+            %>
+        </div>
+        <div class="field-submit">
+          <%= submit_tag "Rechercher", class: "btn btn-primary btn-clapee" %>
+        </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

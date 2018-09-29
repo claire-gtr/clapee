@@ -1,15 +1,12 @@
 <div class="container-margin">
   <div class="container">
     <div class="row">
-      <div class="col-xs-6 col-md-4">
-        <%= image_tag current_user.profile_picture, class: "profile-picture"%>
-      </div>
       <div class="col-xs-6 col-md-8">
         <h2 class="title-form">Mon profil</h2>
 
         <br>
         <div class="profile-infos">
-          <div class="profile-concert">Mes concerts notés 5 étoiles : </div> <br>
+          <div class="profile-concert">Les avis que j'ai donné : </div> <br>
 
           <% current_user.reviews.where(stars: "5").each do |review| %>
             <div class="profile-title"><%= review.event.title %> </div>
@@ -27,6 +24,9 @@
           </div>
         </div>
       </div>
+      <!-- <div class="col-xs-6 col-md-4">
+        <%= image_tag current_user.profile_picture, class: "profile-picture"%>
+      </div> -->
     </div>
   </div>
 </div>

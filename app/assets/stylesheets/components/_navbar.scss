@@ -38,10 +38,18 @@
 }
 
 /* User Avatar */
-.navbar-wagon .avatar {
+.avatar {
   height: 35px;
   width: 35px;
   border-radius: 50%;
+}
+
+.navbar-scroll .avatar {
+  opacity: 0;
+}
+
+.navbar-wagon-scrolled .avatar {
+  opacity: 1;
 }
 
 /* Right section */
