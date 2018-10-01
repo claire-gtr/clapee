@@ -5,10 +5,15 @@
 .alert {
   margin: 0;
   text-align: center;
-  color: white;
+  color: $blue-typo-light;
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  border-color: transparent;
+  z-index: 1000;
 }
 .alert-info {
-  background: $green;
+  background: #D5F4D6;
 }
 .alert-warning {
   background: $red-clapee;

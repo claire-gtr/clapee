@@ -7,7 +7,6 @@
 
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= f.error_notification %>
-
           <div class="form-inputs">
             <%= f.input :email, required: true, autofocus: true %>
 
@@ -27,10 +26,6 @@
                         input_html: { autocomplete: "off"} %>
             <%= f.input :photo %>
             <%= f.input :photo_cache, as: :hidden %>
-            <%= f.input :current_password,
-                        hint: "We need your current password to confirm your changes",
-                        required: true,
-                        input_html: { autocomplete: "current-password" } %>
           </div>
 
           <div class="form-actions">
@@ -39,7 +34,7 @@
         <% end %>
 
         <h5>Vous souhaitez quitter Clapee ?</h5>
-        <p>Vous pouvez choisir de nous quitter <br><%= link_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+        <p>Vous pouvez choisir de nous quitter <br><%= link_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Êtes vous sûr de vouloir supprimer définitevement votre compte Clapee ?" }, method: :delete %></p>
 
         <div class="back-home">
           <%= link_to "Retour à mon profil", me_path, class:"btn btn-default" %>
