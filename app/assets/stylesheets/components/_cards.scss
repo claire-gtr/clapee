@@ -30,18 +30,60 @@
   }
 }
 
-.card-title {
-  font-size:2vw;
+@media screen and (min-width: 10px) {
+  .card-title {
+  font-size:14px;
+  }
+  .card-location {
+  font-size:14px;
+  }
+  .card-date {
+  font-size:11px;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .card-title {
+  font-size:17px;
+  }
+  .card-location {
+  font-size:17px;
+  }
+  .card-date {
+  font-size:13px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .card-title {
+  font-size:19px;
+  }
+  .card-location {
+  font-size:19px;
+  }
+  .card-date {
+  font-size:15px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .card-title {
+  font-size:19px;
+  }
+  .card-location {
+  font-size:19px;
+  }
+  .card-date {
+  font-size:15px;
+  }
 }
 
 .card-location {
-  font-size:1.75vw;
   color: $red-clapee;
   font-weight: 800;
   letter-spacing: 2px;
 }
 
 .card-date {
-  font-size:1.5vw;
   margin-bottom: 4px;
 }

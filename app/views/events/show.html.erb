@@ -6,18 +6,21 @@
       </div>
       <div class="col-xs-6 col-md-8">
         <div class="event-infos">
-          <div class="event-title" style="font-size:4.5vw;"><%= @event.title.split(/ |\_/).map(&:capitalize).join(" ") %></div>
-          <div class="event-genre" style="font-size:2.5vw;"> <%= @event.music_genre %></div>
-          <div class="event-date" style="font-size:2.5vw;"> <%= @event.digitick_date.strftime("%e %b %Y") %></div>
-          <div class="event-location" style="font-size:2.5vw;">
+          <div class="event-title"><%= @event.title %></div>
+          <div class="event-genre"> <%= @event.music_genre %></div>
+          <div class="event-date"> <%= @event.digitick_date.strftime("%e %b %Y") %></div>
+          <div class="event-location">
             <%= @event.location.name.split(/ |\_/).map(&:capitalize).join(" ") %>, <%= @event.location.town.split(/ |\_/).map(&:capitalize).join(" ") %>
           </div>
+          <% if @event.reviews.count >= 1 %>
           <%= render "events/stars-average", event: @event %>
-          <br>
-          <div class="event-status" style="font-size:2vw;"><%= @event.status %>
+          <% end %>
+          <div class="event-status"><%= @event.status %>
           </div>
-          <h6 style="font-size:2vw;"><em>À partir de <%= @event.min_price %> €</em></h6>
-          <div type="button" style="font-size:2vw;"><%= link_to "Billeterie digitick", @event.digitick_url, target: "_blank", class:"btn btn-primary btn-clapee btn-to-digitick" %>
+          <div class="event-price">
+            <em>À partir de <%= @event.min_price %> €</em>
+          </div>
+          <div type="button"><%= link_to "Je réserve ma place", @event.digitick_url, target: "_blank", class:"btn btn-primary btn-clapee btn-to-digitick" %>
           </div>
         </div>
       </div>

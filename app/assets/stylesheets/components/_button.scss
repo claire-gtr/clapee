@@ -1,6 +1,47 @@
+@media screen and (min-width: 10px) {
+  .btn {
+    padding: 5px 9px;
+  }
+  .btn-clapee {
+    font-size: 10px;
+  }
+  .btn-to-digitick {
+    font-size:8px;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .btn {
+    padding: 6px 10px;
+  }
+  .btn-clapee {
+    font-size: 12px;
+  }
+  .btn-to-digitick {
+    font-size:10px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .btn-clapee {
+    font-size: 14px;
+  }
+  .btn-to-digitick {
+    font-size:12px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .btn-clapee {
+    font-size: 16px;
+  }
+  .btn-to-digitick {
+    font-size:14px;
+  }
+}
+
 .btn-clapee {
   border-radius: 7px;
-  font-size: 14px;
 }
 
 .btn-default {
@@ -9,14 +50,6 @@
   color: $blue;
   margin: 15px 0px;
   font-weight: 200;
-}
-
-.btn-to-digitick {
-  font-size:2vw;
-}
-
-.btn-index {
-  font-size:1.75vw;
 }
 
 .btn-fb {
