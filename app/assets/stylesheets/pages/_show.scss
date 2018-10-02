@@ -12,10 +12,6 @@
   max-width: 100%;
   margin: 4rem auto 0px;
   max-height: 95%;
-
-  .event-title {
-    font-size: 4rem;
-  }
   .event-genre {
     font-weight: lighter;
   }
@@ -23,17 +19,101 @@
     color: $red-clapee;
     font-weight: bold;
   }
-  .event-status{
-    font-size: 2rem;
+  .event-status {
     font-weight: bold;
-  }
-  .btn-clapee {
-    margin-top: 2rem;
   }
 }
 
+@media screen and (min-width: 10px) {
+  .event-title {
+  font-size:12px;
+  }
+  .event-genre {
+  font-size:10px;
+  }
+  .event-date {
+  font-size:10px;
+  }
+  .event-location {
+  font-size:10px;
+  }
+  .event-status {
+  font-size:10px;
+  }
+  .event-price {
+  font-size:8px;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .event-title {
+  font-size:16px;
+  }
+  .event-genre {
+  font-size:14px;
+  }
+  .event-date {
+  font-size:14px;
+  }
+  .event-location {
+  font-size:14px;
+  }
+  .event-status {
+  font-size:14px;
+  }
+  .event-price {
+  font-size:12px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .event-title {
+  font-size:18px;
+  }
+  .event-genre {
+  font-size:16px;
+  }
+  .event-date {
+  font-size:16px;
+  }
+  .event-location {
+  font-size:16px;
+  }
+  .event-status {
+  font-size:16px;
+  }
+  .event-price {
+  font-size:14px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .event-title {
+  font-size:22px;
+  }
+  .event-genre {
+  font-size:20px;
+  }
+  .event-date {
+  font-size:20px;
+  }
+  .event-location {
+  font-size:20px;
+  }
+  .event-status {
+  font-size:20px;
+  }
+  .event-price {
+  font-size:18px;
+  }
+}
+
+.event-price {
+  padding: 5px 0;
+  }
+
 .event-description {
-  margin: 7px;
+  margin: 10px 5px;
   font-size: 14px;
   font-weight: 300;
 }
@@ -43,10 +123,4 @@
   margin-bottom: 15px;
   font-size: 20px;
   font-weight: 300;
-}
-
-.display-average-stars {
-font-size: 16px;
-color: $dark-grey;
-font-weight: 400;
 }

@@ -1,4 +1,4 @@
-<div class="average-stars" style="font-size:3vw;">
+<div class="average-stars">
   <% @star_total = 0 %>
     <% if @event.reviews.count > 0 %>
       <% @event.reviews.each do |review| %>
@@ -10,17 +10,19 @@
   <% if @event.reviews.count == 0 %>
     <br>
   <% else %>
-  <ul class="list-inline">
+  <ul class="list-inline stars-display">
     <li>
       <% @star_average.times do %>
-        <%= inline_svg("clap", width: 32, class:"clap-blue") %>
+        <%= inline_svg("clap", width: 20, class:"clap-blue") %>
       <% end %>
       <% (5 - @star_average).times do %>
-        <%= inline_svg("clap", width: 32) %>
+        <%= inline_svg("clap", width: 20) %>
       <% end %>
     </li>
-    <li class="display-average-stars" style="font-size:2.5vw;">
-      <em>(<%= @event.reviews.count %> avis)</em>
+    <li>
+      <div class="display-average-stars">
+        <em>(<%= @event.reviews.count %> avis)</em>
+      </div>
     </li>
   <% end %>
 </div>
