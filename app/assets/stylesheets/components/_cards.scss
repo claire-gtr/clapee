@@ -14,43 +14,48 @@
   position: absolute;
   width: 100%;
   bottom: 0;
-  transform: translateY(100%);
-  transition: ease 400ms all;
   text-align: center;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1));
   padding: 30px 10px 10px;
+  color: $white;
 }
 
 
-.card:hover {
-
+@media screen and (min-width: 768px) {
   .card-infos {
-    color: $white;
-    transform: translateY(0%);
+    transform: translateY(100%);
+    transition: ease 400ms all;
+  }
+  .card:hover {
+
+    .card-infos {
+      transform: translateY(0%);
+    }
+
   }
 }
 
 @media screen and (min-width: 10px) {
   .card-title {
-  font-size:14px;
+  font-size:12px;
   }
   .card-location {
-  font-size:14px;
+  font-size:12px;
   }
   .card-date {
-  font-size:11px;
+  font-size:10px;
   }
 }
 
 @media screen and (min-width: 576px) {
   .card-title {
-  font-size:17px;
+  font-size:16px;
   }
   .card-location {
-  font-size:17px;
+  font-size:16px;
   }
   .card-date {
-  font-size:13px;
+  font-size:12px;
   }
 }
 
