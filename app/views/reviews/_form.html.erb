@@ -5,7 +5,7 @@
       <%= f.collection_radio_buttons :stars, (1..5).to_a.reverse, :to_i, :to_i, boolean_style: :inline, item_wrapper_tag: false do |b| %>
         <%= b.radio_button class: "star star-#{b.text}" %>
         <%= b.label class: "star star-#{b.text}" do %>
-          <%= inline_svg("clap", width: 32) %>
+          <%= inline_svg("clap.svg", width: 32) %>
         <% end %>
       <% end %>
     </div>
