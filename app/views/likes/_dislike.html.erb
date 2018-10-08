@@ -1,5 +1,5 @@
 <%= link_to like_path(like), remote: true, method: :delete do %>
-  <%= inline_svg('heart', width: 14) %>
+  <%= inline_svg('heart.svg', width: 14) %>
 <% end %>
 <em>
   <span class="number-likes", id="like-count-<%= review.id %>">
