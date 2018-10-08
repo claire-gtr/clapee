@@ -13,10 +13,10 @@
   <ul class="list-inline stars-display">
     <li>
       <% @star_average.times do %>
-        <%= inline_svg("clap", width: 20, class:"clap-blue") %>
+        <%= inline_svg("clap.svg", width: 20, class:"clap-blue") %>
       <% end %>
       <% (5 - @star_average).times do %>
-        <%= inline_svg("clap", width: 20) %>
+        <%= inline_svg("clap.svg", width: 20) %>
       <% end %>
     </li>
     <li>
