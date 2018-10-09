@@ -14,17 +14,18 @@
 
 .review-user {
   color: $blue-typo-light;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
 }
 
 .review-content, .review-likes {
   color: $dark-grey;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .review-stars {
-  font-size: 12px;
+  margin-top: 4px;
+  font-size: 20px;
 }
 
 .list-inline {

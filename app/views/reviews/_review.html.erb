@@ -2,18 +2,18 @@
   <div class="review-card">
 
     <div class="review-user">
-      <%= review.user.username %> à donné cet avis le <%= review.created_at.strftime("%e.%m.%y")%> à <%= review.created_at.strftime("%Hh%M")%> :
+      <%= review.user.username %> a donné cet avis le <%= review.created_at.strftime("%e.%m.%y")%> à <%= review.created_at.strftime("%Hh%M")%> :
     </div>
 
     <ul class="list-inline">
       <li>
         <div class="review-stars">
           <% review.stars.to_i.times do %>
-            <%= inline_svg("clap.svg", width: 16, class:"clap-blue") %>
+            <%= inline_svg("clap.svg", width: 25, class:"clap-blue") %>
           <% end %>
 
           <% (5 - review.stars.to_i).times do %>
-            <%= inline_svg("clap.svg", width: 16) %>
+            <%= inline_svg("clap.svg", width: 25) %>
           <% end %>
         </div>
       </li>
