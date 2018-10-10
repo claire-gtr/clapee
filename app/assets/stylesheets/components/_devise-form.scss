@@ -4,3 +4,20 @@
   letter-spacing: 2px;
   color: $blue;
 }
+.background-img {
+  background-image: linear-gradient(-225deg, rgba(250,250,250,0.5) 0%, rgba(250,250,250,0.2) 50%), url('anthony-delanoix-min.png');
+  background-size: cover !important;
+  height: 100vh;
+}
+
+.background-img-new {
+  background-image: linear-gradient(-225deg, rgba(250,250,250,0.5) 0%, rgba(250,250,250,0.2) 50%), url('marc-olivier-paquin-min.png');
+  background-size: cover !important;
+  height: 100vh;
+}
+
+.background-img-profile {
+  background-image: linear-gradient(-225deg, rgba(250,250,250,0.5) 0%, rgba(250,250,250,0.2) 50%), url('austin-neill-min.png');
+  background-size: cover !important;
+  height: 100vh;
+}
