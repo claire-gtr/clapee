@@ -13,9 +13,10 @@ gem 'redis'
 gem 'pundit'
 gem 'pagy'
 gem 'pg_search', '~> 1.0', '>= 1.0.5'
-gem 'dotenv-rails', groups: [:development, :test]
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
+gem 'geocoder'
+gem 'devise-i18n'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
@@ -26,10 +27,9 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'inline_svg'
 
-
-
 group :development do
   gem 'web-console', '>= 3.3.0'
+  gem 'rails-erd'
 end
 
 group :development, :test do

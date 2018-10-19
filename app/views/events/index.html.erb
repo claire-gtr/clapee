@@ -1,29 +1,108 @@
 <% content_for(:navbar_scroll, true) %>
 
 <%= render "shared/banner" %>
-
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-lg-12">
-      <div class="form-group form-inline form-search">
-        <div class="field-search">
-          <%= form_tag root_path, method: :get do %>
-            <%= text_field_tag :search,
-              params[:search],
-              class: "form-control field-search",
-              placeholder: "Trouver un concert"
-            %>
+  <div class="form-group form-search">
+    <%= form_tag root_path, method: :get do %>
+      <div class="media">
+        <div class="media-body">
+          <%= text_field_tag :search,
+            params[:search],
+            class: "form-control field-search",
+            placeholder: "Trouver un concert"
+          %>
         </div>
-        <div class="field-submit">
-          <%= submit_tag "Rechercher", class: "btn btn-primary btn-clapee" %>
+        <div class="media-right">
+          <%= submit_tag "Rechercher", class: "btn btn-primary" %>
         </div>
-        </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
-</div>
 
-<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="hidden-sm hidden-xs">
+        <div class="btn-group btn-group-justified m-0" role="group">
+          <div class="btn-group" role="group">
+            <%= link_to "Voir tout", root_path, class: "btn btn-default" %>
+          </div>
+          <div class="btn-group" role="group">
+            <%= link_to "Pop Rock", root_path(genre: "Pop Rock"), class: "btn btn-default" %>
+          </div>
+          <div class="btn-group" role="group">
+            <%= link_to "Jazz", root_path(genre: "Jazz"), class: "btn btn-default" %>
+          </div>
+          <div class="btn-group" role="group">
+            <%= link_to "Reggae", root_path(genre: "Reggae"), class: "btn btn-default" %>
+          </div>
+
+          <div class="btn-group" role="group">
+            <%= link_to "Rap", root_path(genre: "Rap"), class: "btn btn-default" %>
+          </div>
+
+          <div class="btn-group" role="group">
+            <%= link_to "Electro", root_path(genre: "Electro"), class: "btn btn-default" %>
+          </div>
+
+          <div class="btn-group" role="group">
+            <%= link_to "Variété", root_path(genre: "Variété"), class: "btn btn-default" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="visible-xs-block visible-sm-block">
+        <div class="btn-group btn-block m-0">
+          <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Filter par genre musical <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to "Voir tout", root_path %>
+            </li>
+            <li>
+              <%= link_to "Pop Rock", root_path(genre: "Pop Rock") %>
+            </li>
+            <li>
+              <%= link_to "Jazz", root_path(genre: "Jazz") %>
+            </li>
+            <li>
+              <%= link_to "Reggae", root_path(genre: "Reggae") %>
+            </li>
+
+            <li>
+              <%= link_to "Rap", root_path(genre: "Rap") %>
+            </li>
+
+            <li>
+              <%= link_to "Electro", root_path(genre: "Electro") %>
+            </li>
+
+            <li>
+              <%= link_to "Variété", root_path(genre: "Variété") %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <%= link_to "Près de chez moi", "#", class: "btn btn-default btn-block m-0", id: "near-me" %>
+    </div>
+
+  </div>
+
+  <% if @filter %>
+    <h3>
+      <%= @filter[:type] %>
+      <%= ":" if @filter[:value] %>
+      <%= @filter[:value] %>
+      <small>
+        (<%= link_to "Tout voir", root_path %>)
+      </small>
+    </h3>
+  <% end %>
+
+
   <div class="row">
     <% @events.each do |event| %>
       <div class="col-xs-6 col-lg-3 col-md-3">

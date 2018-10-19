@@ -18,8 +18,8 @@ namespace :digitick do
         town: event.xpath('venueTown').text,
         address: event.xpath('venueAdress').text,
         zipcode: event.xpath('venueZipcode').text,
-        location_latitude: event.xpath('venueLatitude').text,
-        location_longitude: event.xpath('venueLongitude').text,
+        location_latitude: event.xpath('venueLatitude').text.to_f,
+        location_longitude: event.xpath('venueLongitude').text.to_f,
       ).find_or_create_by(location_digitick_id: location_digitick_id)
 
       event_digitick_id = event.xpath('eventId').text
