@@ -15,7 +15,7 @@ class EventsController < ApplicationController
 
     if params[:lat] && params[:lng]
       @results = @results.where(location_id: Location.near([params[:lat], params[:lng]], 50, units: :km).map(&:id))
-      @filter = { type: "Concerts près de chez moi" }
+      @filter = { type: "Concerts près de chez moi"}
     end
 
     @pagy, @events = pagy(@results, items: 12)

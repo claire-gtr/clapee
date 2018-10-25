@@ -6,13 +6,13 @@
 
         <br>
         <div class="profile-infos">
-          <div class="profile-concert">Les avis que j'ai donné : </div> <br>
+          <div class="profile-concert">Mes avis : </div> <br>
           <% if current_user.reviews.none? %>
             <p class="text-muted">
               Vous n'avez pas encore laissé d'avis
             </p>
           <% end %>
-          <% current_user.reviews.where(stars: "5").each do |review| %>
+          <% current_user.reviews.each do |review| %>
             <div class="profile-title"><%= review.event.title %> </div>
             <div class="profile-avis"> Le <%= review.created_at.strftime("%e %b %Y - %Hh%M") %> vous avez écrit l'avis suivant :</div>
             <%= review.content %> <br>
