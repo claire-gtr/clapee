@@ -92,14 +92,18 @@
   </div>
 
   <% if @filter %>
-    <h3>
-      <%= @filter[:type] %>
-      <%= ":" if @filter[:value] %>
-      <%= @filter[:value] %>
-      <small>
-        (<%= link_to "Tout voir", root_path %>)
-      </small>
-    </h3>
+    <div class="display-filter-link">
+      <div class="display-filter">
+        <em>
+        <%= @filter[:type] %>
+        <%= ":" if @filter[:value] %>
+        <%= @filter[:value] %>
+        </em>
+        <small>
+          ( <%= link_to "Tout voir", root_path %> )
+        </small>
+      </div>
+    </div>
   <% end %>
 
 

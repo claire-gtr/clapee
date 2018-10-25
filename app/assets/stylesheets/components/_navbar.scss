@@ -63,13 +63,15 @@
 /* Basic navbar item */
 .navbar-wagon-item {
   cursor: pointer;
-  padding: 0 20px;
+  padding: 30px 0px 10px 0px;
 }
 
 /* Navbar link */
 .navbar-wagon-link {
-  color: #616668;
-  font-size: 14px;
+  color: $white;
+  font-size: 10px;
+  font-weight: 200;
+  letter-spacing: 3px;
 }
 .navbar-wagon-link:hover {
   color: $red-clapee;
