@@ -1,36 +1,69 @@
 <div class="container-margin">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12">
         <h2 class="title-form">Mon profil</h2>
-
         <br>
+
         <div class="profile-infos">
-          <div class="profile-concert">Mes avis : </div> <br>
+          <div class="profile-concert">Mes avis :
+          </div> <br>
+
           <% if current_user.reviews.none? %>
             <p class="text-muted">
               Vous n'avez pas encore laissé d'avis
             </p>
           <% end %>
+
           <% current_user.reviews.each do |review| %>
-            <div class="profile-title"><%= review.event.title %> </div>
-            <div class="profile-avis"> Le <%= review.created_at.strftime("%e %b %Y - %Hh%M") %> vous avez écrit l'avis suivant :</div>
-            <%= review.content %> <br>
-            <div class="profile-voir-concert"><%= link_to "Voir le concert", event_path(review.event), class:"links" %></div> <br>
+          <div class="media">
+            <div class="media-left">
+              <div id="my-reviews-event-img"> <%= image_tag review.event.event_picture_url %>
+              </div>
+            </div>
+
+            <div class="media-body">
+              <div class="profile-title">
+                <%= review.event.title %>
+              </div>
+              <div class="profile-avis"> Le <%= review.created_at.strftime("%e %b %Y - %Hh%M") %> vous avez écrit l'avis suivant :
+              </div>
+              <ul class="list-inline">
+                <li>
+                  <div class="review-stars">
+                    <% review.stars.to_i.times do %>
+                      <%= inline_svg("clap.svg", width: 20, class:"clap-blue") %>
+                    <% end %>
+
+                    <% (5 - review.stars.to_i).times do %>
+                      <%= inline_svg("clap.svg", width: 20) %>
+                    <% end %>
+                  </div>
+                </li>
+                <li>
+                  <div class="review-content">
+                    <em> <%= review.content %> </em>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="profile-voir-concert"><%= link_to "Voir le concert", event_path(review.event), class:"links" %>
+              </div>
+            </div>
+            </div>
+
           <% end %>
 
+          </div>
+
+
           <br>
+
 
           <%= link_to "Modifier mon profil", edit_user_registration_path, class:"btn btn-default" %>
 
           <div class="back-home">
             <%= link_to "Retour à la liste des concerts", root_path, class:"btn btn-back-concert" %>
           </div>
-        </div>
-      </div>
-      <!-- <div class="col-xs-6 col-md-4">
-        <%= image_tag current_user.profile_picture, class: "profile-picture"%>
-      </div> -->
     </div>
   </div>
 </div>
