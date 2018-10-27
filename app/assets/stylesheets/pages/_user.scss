@@ -1,10 +1,7 @@
-.profile-picture {
-  margin: 40px auto 0px;
-  height: 70px;
-  width: 70px;
-  border-radius: 50%;
-}
+#my-reviews-event-img > img {
+  max-width: 80px;
 
+}
 
 .profile-infos {
   width: 100%;
@@ -20,11 +17,10 @@
 
   .profile-avis {
     color: $blue-typo-light;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .profile-voir-concert {
-    margin-top: 1rem;
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 }
