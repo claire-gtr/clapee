@@ -2,6 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'net/http'
 
+
 namespace :digitick do
   desc "Fetch new events from digitick"
   task fetch: :environment do
@@ -48,7 +49,7 @@ namespace :digitick do
 
   def fetch_image image_source_path
     # TODO: change this URL to image_path('clapee.png')
-    return "https://statics.digitick.com/bundles/digitickcms/images/events/defaut.png" if image_source_path.include? "defaut_110.jpg"
+    return "/assets/default-clapee.jpg" if image_source_path.include? "defaut_110.jpg"
 
     image_path = image_source_path.gsub('evenements/', 'evenements/aff_')
 
