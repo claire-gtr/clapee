@@ -12,6 +12,11 @@ class Event < ApplicationRecord
                   # ,
                   # :using => :trigram
 
+  scope :future, -> { where("digitick_date > ?", Time.current).order(digitick_date: :asc) }
+
+  def self.future
+    where("digitick_date > ?", Time.current).order(digitick_date: :asc)
+  end
 
   def to_param
     "#{id}-#{title.parameterize}"

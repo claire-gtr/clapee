@@ -3,18 +3,20 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @results = policy_scope(Event)
+    @events = policy_scope(Event)
+    @results = @events.future
+
     if params[:search]
-      @results = @results.search(params[:search])
+      @results = @events.search(params[:search])
       @filter = { type: "Recherche", value: params[:search] }
     end
     if params[:genre]
-      @results = @results.where('music_genre ILIKE ?', "%#{params[:genre]}%")
+      @results = @events.where('music_genre ILIKE ?', "%#{params[:genre]}%")
       @filter = { type: "Genre musical", value: params[:genre] }
     end
 
     if params[:lat] && params[:lng]
-      @results = @results.where(location_id: Location.near([params[:lat], params[:lng]], 50, units: :km).map(&:id))
+      @results = @events.where(location_id: Location.near([params[:lat], params[:lng]], 50, units: :km).map(&:id))
       @filter = { type: "Concerts près de chez moi"}
     end
 
