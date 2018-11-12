@@ -17,6 +17,7 @@ gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 gem 'geocoder'
 gem 'devise-i18n'
+gem 'sitemap_generator'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
