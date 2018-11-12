@@ -1,0 +1,6 @@
+meta_product_name: "Live music is all about passion"
+meta_title: "CLAPEE"
+meta_description: "Live music is all about passion"
+meta_keywords: ""
+meta_image: "bannerclapee.jpg"                       # should exist in `app/assets/images/`
+twitter_account: "@clapeemusic"
