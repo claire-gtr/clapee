@@ -22,8 +22,15 @@ namespace :digitick do
         CSV.parse(document_string, csv_options) do |row|
           location_name = row[:ticketsvenue_name]
           location = Location.where("name ILIKE ?", "%#{location_name}%").first
-
-          unless location
+          if location
+            location.update(
+              name: location_name,
+              address: row[:ticketsvenue_address],
+              location_latitude: row[:ticketslatitude].to_f,
+              location_longitude: row[:ticketslongitude].to_f
+            )
+            puts "Location updated: #{location_name}"
+          else
             location = Location.create(
               name: location_name,
               address: row[:ticketsvenue_address],
@@ -31,6 +38,7 @@ namespace :digitick do
               location_longitude: row[:ticketslongitude].to_f
             )
             puts "New location created: #{location_name}"
+
           end
 
           event_digitick_id = row[:aw_product_id]
