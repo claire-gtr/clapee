@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_19_130119) do
+ActiveRecord::Schema.define(version: 2018_12_17_141204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2018_10_19_130119) do
     t.string "artist_name"
     t.string "status"
     t.string "event_picture_url"
-    t.integer "digitick_id"
+    t.string "digitick_id"
     t.string "digitick_url"
     t.bigint "location_id"
     t.datetime "digitick_date"

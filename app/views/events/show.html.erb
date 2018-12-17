@@ -12,16 +12,18 @@
       </div>
       <div class="col-xs-6 col-md-8">
         <div class="event-infos">
+          <%= @event.digitick_id %>
           <div class="event-title"><%= @event.title %></div>
           <div class="event-genre"> <%= @event.music_genre %></div>
-          <div class="event-date"> <%= @event.digitick_date.strftime("%e %b %Y") %></div>
+          <div class="event-date"> <%= @event.digitick_date.strftime("%e %b %Y %H:%M") %></div>
           <div class="event-location">
-            <%= @event.location.name.split(/ |\_/).map(&:capitalize).join(" ") %>, <%= @event.location.town.split(/ |\_/).map(&:capitalize).join(" ") %>
+            <%= @event.location.name.split(/ |\_/).map(&:capitalize).join(" ") %>,
+            <%= @event.location.address %>
           </div>
           <% if @event.reviews.count >= 1 %>
           <%= render "events/stars-average", event: @event %>
           <% end %>
-          <div class="event-status"><%= @event.status %>
+          <div class="event-status"><%= @event.is_for_sale %>
           </div>
           <div class="event-price">
             <em>À partir de <%= @event.min_price %> €</em>
