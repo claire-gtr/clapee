@@ -21,4 +21,9 @@ class Event < ApplicationRecord
   def to_param
     "#{id}-#{title.parameterize}"
   end
+
+  def is_for_sale
+    return status unless ["0", "1"].include? status
+    status == "1" ? "Vente en cours" : "Vente terminée"
+  end
 end

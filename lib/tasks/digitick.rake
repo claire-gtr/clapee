@@ -1,69 +1,81 @@
 require 'open-uri'
 require 'nokogiri'
 require 'net/http'
+require 'zipruby'
 
 
 namespace :digitick do
   desc "Fetch new events from digitick"
   task fetch: :environment do
 
-    puts "hello"
+    puts "Fetching event from Digitick..."
+    url = 'https://productdata.awin.com/datafeed/download/apikey/20721b5adb99ac0924a6cf7fb8c4ee92/language/fr/cid/590/columns/aw_deep_link,product_name,aw_product_id,merchant_product_id,merchant_image_url,description,merchant_category,search_price,merchant_name,merchant_id,category_name,category_id,aw_image_url,currency,store_price,delivery_cost,merchant_deep_link,language,last_updated,Travel%3Alocation,is_for_sale,Tickets%3Aprimary_artist,Tickets%3Asecond_artist,Tickets%3Aevent_date,Tickets%3Aevent_name,Tickets%3Avenue_name,Tickets%3Avenue_address,Tickets%3Aavailable_from,Tickets%3Agenre,Tickets%3Amin_price,Tickets%3Amax_price,Tickets%3Alatitude,Tickets%3Alongitude,Tickets%3Aevent_location_address,Tickets%3Aevent_location_zipcode,Tickets%3Aevent_location_city,Tickets%3Aevent_location_region,Tickets%3Aevent_location_country,Tickets%3Aevent_location_coordinates,Tickets%3Aevent_duration,display_price,data_feed_id/format/csv/delimiter/%2C/compression/zip/'
+    zipfile = open('/tmp/zipfile.zip', 'w')
+    zipfile << open(url).read.force_encoding('utf-8')
 
-    document = Nokogiri::XML(open('http://adxml.publicidees.com/xml.php?progid=1472&partid=56740&n=Digitick_flux_concerts'))
+    unzipped_document = Zip::Archive.open("/tmp/zipfile.zip") do |archive|
+      zipfile_path = archive.get_name(0)
+      archive.fopen(zipfile_path) do |f|
+        document_string = CGI.unescapeHTML(f.read.force_encoding('utf-8'))
+        csv_options = { headers: :first_row, header_converters: :symbol }
+        locations_not_found = []
+        CSV.parse(document_string, csv_options) do |row|
+          location_name = row[:ticketsvenue_name]
+          location = Location.where("name ILIKE ?", "%#{location_name}%").first
 
-    document.xpath('//eventList/event').each do |event|
-      location_digitick_id = event.xpath('venueId').text
+          unless location
+            location = Location.create(
+              name: location_name,
+              address: row[:ticketsvenue_address],
+              location_latitude: row[:ticketslatitude].to_f,
+              location_longitude: row[:ticketslongitude].to_f
+            )
+            puts "New location created: #{location_name}"
+          end
 
-      location = Location.create_with(
-        name: event.xpath('venueName').text,
-        town: event.xpath('venueTown').text,
-        address: event.xpath('venueAdress').text,
-        zipcode: event.xpath('venueZipcode').text,
-        location_latitude: event.xpath('venueLatitude').text.to_f,
-        location_longitude: event.xpath('venueLongitude').text.to_f,
-      ).find_or_create_by(location_digitick_id: location_digitick_id)
+          event_digitick_id = row[:aw_product_id]
+          event_picture_url = fetch_image(row[:merchant_image_url])
+          Event.create_with(
+            title: row[:product_name],
+            digitick_url: row[:aw_deep_link],
+            description: row[:description],
+            status: row[:is_for_sale],
+            min_price: row[:ticketsmin_price],
+            digitick_id: event_digitick_id,
+            location: location,
+            digitick_date: Time.parse(row[:ticketsevent_date]),
+            event_picture_url: row[:merchant_image_url],
+          ).find_or_create_by(digitick_id: event_digitick_id)
+        end
 
-      event_digitick_id = event.xpath('eventId').text
-
-      event_picture_url = fetch_image(event.xpath('pictureUrl').text)
-
-      Event.create_with(
-        title: event.xpath('eventName').text,
-        artist_name: event.xpath('artistList/artist/artistNom').text,
-        digitick_url: event.xpath('eventUrl').text,
-        description: event.xpath('eventPresentation').text,
-        status: event.xpath('eventState').text,
-        event_picture_url: event_picture_url,
-        min_price: event.xpath('minTarif').text,
-        digitick_id: event_digitick_id,
-        location: location,
-        music_genre: event.xpath('subCategoryName').text,
-        digitick_date: Time.parse(event.xpath('dateStart').text)
-      ).find_or_create_by(digitick_id: event_digitick_id)
-
-      puts "Event #{event_digitick_id} managed!"
+      end
     end
-    puts "done !"
-    exit
   end
 
   def fetch_image image_source_path
-    # TODO: change this URL to image_path('clapee.png')
     return "/assets/default-clapee.jpg" if image_source_path.include? "defaut_110.jpg"
-
     image_path = image_source_path.gsub('evenements/', 'evenements/aff_')
 
-    image_640_path = image_path.gsub('_110', '_640')
-    response = Net::HTTP.get_response(URI.parse(image_640_path))
-    return image_640_path if response.code != "404"
-
-    image_320_path = image_path.gsub('_110', '_320')
-    response = Net::HTTP.get_response(URI.parse(image_320_path))
-    return image_320_path if response.code != "404"
-
-    return image_source_path
+    begin
+      image_640_path = image_path.gsub(/_[0-9]+/, '_640')
+      response = RestClient::Request.execute(
+        url: URI.parse(image_640_path).to_s,
+        method: :get,
+        verify_ssl: false
+      )
+      return image_640_path if response.code != "404"
+    rescue
+      begin
+        image_320_path = image_path.gsub(/_[0-9]+/, '_320')
+        response = RestClient::Request.execute(
+          url: URI.parse(image_320_path).to_s,
+          method: :get,
+          verify_ssl: false
+        )
+        return image_320_path if response.code != "404"
+      rescue
+        return image_source_path
+      end
+    end
   end
 end
-
-
-
