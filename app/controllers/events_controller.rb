@@ -10,10 +10,16 @@ class EventsController < ApplicationController
       @results = @events.search(params[:search])
       @filter = { type: "Recherche", value: params[:search] }
     end
+
     if params[:genre]
       @results = @events.where('music_genre ILIKE ?', "%#{params[:genre]}%")
       @filter = { type: "Genre musical", value: params[:genre] }
     end
+
+    # if params[:best_rated]
+    #   @results = @events.where('reviews ?', "vendredi%").order('reviews.stars.count desc')
+    #   @filter = { type: "Les mieux notés" }
+    # end
 
     if params[:lat] && params[:lng]
       @results = @events.where(location_id: Location.near([params[:lat], params[:lng]], 200, units: :km).map(&:id))
