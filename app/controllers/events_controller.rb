@@ -17,7 +17,9 @@ class EventsController < ApplicationController
     end
 
     # if params[:best_rated]
-    #   @results = @events.where('reviews ?', "vendredi%").order('reviews.stars.count desc')
+    #   @results = @events.select("events.id, event.reviews.stars.count as average_rating, count(reviews.id) as number_of_reviews")
+    #                     .group("events.id")
+    #                     .order("average_rating DESC, number_of_reviews DESC")
     #   @filter = { type: "Les mieux notés" }
     # end
 
