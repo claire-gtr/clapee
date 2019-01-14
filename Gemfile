@@ -20,6 +20,7 @@ gem 'devise-i18n'
 gem 'sitemap_generator'
 gem 'zipruby'
 gem 'rest-client'
+gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
@@ -33,6 +34,7 @@ gem 'inline_svg'
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'rails-erd'
+  gem "letter_opener"
 end
 
 group :development, :test do

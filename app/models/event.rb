@@ -13,6 +13,8 @@ class Event < ApplicationRecord
                   # :using => :trigram
 
   scope :future, -> { where("digitick_date > ?", Time.current).order(digitick_date: :asc) }
+  scope :with_at_least_reviews, ->(count) { joins(:reviews).group('events.id').having('count(event_id) >= ?', count) }
+  scope :average_reviews_above, ->(stars) { joins(:reviews).group('events.id').having('AVG(stars) >= ?', stars) }
 
   def self.future
     where("digitick_date > ?", Time.current).order(digitick_date: :asc)
